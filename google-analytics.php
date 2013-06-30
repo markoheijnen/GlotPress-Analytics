@@ -36,7 +36,7 @@ class Google_Analytics extends GP_Plugin {
 
 	public function glotpress_menu( $items ) {
 		if( GP::$user->current()->admin() )
-			$items['/settings/google-analytics'] = 'Google Analytics';
+			$items[ gp_url( '/settings/google-analytics' ) ] = 'Google Analytics';
 
 		return $items;
 	}
