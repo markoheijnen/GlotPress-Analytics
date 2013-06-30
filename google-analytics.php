@@ -3,7 +3,7 @@
 class Google_Analytics extends GP_Plugin {
 	public $id = 'google_an';
 
-	private $tracking_id = '';
+	private $tracking_id = false;
 	private $tracking_domain = '';
 
 	public function __construct() {
@@ -16,6 +16,12 @@ class Google_Analytics extends GP_Plugin {
 	}
 
 	public function gp_head() {
+		$this->tracking_id = GP::$plugins->google_analytics->get_option( 'trackingscode' );
+
+		if( ! $this->tracking_id )
+			return;
+
+		$this->tracking_domain = $_SERVER['SERVER_NAME'];
 		?>
 
 
@@ -46,7 +52,9 @@ class Google_Analytics extends GP_Plugin {
 			return;
 
 		include 'router.php';
+
 		GP::$router->add( "/settings/google-analytics", array( 'Google_Analytics_Route', 'settings_get' ), 'get' );
+		GP::$router->add( "/settings/google-analytics", array( 'Google_Analytics_Route', 'settings_post' ), 'post' );
 	}
 
 }
