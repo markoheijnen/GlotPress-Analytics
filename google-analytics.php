@@ -1,7 +1,7 @@
 <?php
 
 class Google_Analytics extends GP_Plugin {
-	public $id = 'google_analytics';
+	public $id = 'google_an';
 
 	private $tracking_id = '';
 	private $tracking_domain = '';
